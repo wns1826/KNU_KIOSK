@@ -87,7 +87,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
@@ -147,26 +147,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="KNU_KIOSK.h" />
-    <ClInclude Include="Resource.h" />
+    <ClInclude Include="DRAW.h" />
+    <ClInclude Include="header.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="WEBVIEW.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="KNU_KIOSK.cpp" />
+    <ClCompile Include="DRAW.cpp" />
+    <ClCompile Include="proc_init.cpp" />
+    <ClCompile Include="proc_list.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="parse_cie.cpp" />
+    <ClCompile Include="parse_dormi.cpp" />
+    <ClCompile Include="parse_knu.cpp" />
+    <ClCompile Include="proc.cpp" />
+    <ClCompile Include="proc_tag.cpp" />
+    <ClCompile Include="proc_post.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="KNU_KIOSK.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="KNU_KIOSK.ico" />
-    <Image Include="small.ico" />
+    <ClCompile Include="WEBVIEW.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,40 +13,78 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\class">
+      <UniqueIdentifier>{547e1bbf-4a82-45bd-92d7-2842c5460bd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\lib">
+      <UniqueIdentifier>{7c9101c7-ea42-4713-bd0d-09ed57c04bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\proc">
+      <UniqueIdentifier>{aee52e1b-cc22-47fb-b7eb-e732f0127cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\class">
+      <UniqueIdentifier>{141f06cc-173c-4469-8ef9-c3d582fe1290}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\parsing">
+      <UniqueIdentifier>{48d9915e-d607-42c8-bc55-bf8958887bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\socket">
+      <UniqueIdentifier>{13190581-81c8-4c51-b7d6-1b31357baf85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\socket\http">
+      <UniqueIdentifier>{57de3721-d045-460a-8766-b8072d5f498c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="header.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="WEBVIEW.h">
+      <Filter>헤더 파일\class</Filter>
     </ClInclude>
-    <ClInclude Include="KNU_KIOSK.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="DRAW.h">
+      <Filter>헤더 파일\class</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="KNU_KIOSK.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="KNU_KIOSK.rc">
-      <Filter>리소스 파일</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="small.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
-    <Image Include="KNU_KIOSK.ico">
-      <Filter>리소스 파일</Filter>
-    </Image>
+    <ClCompile Include="proc.cpp">
+      <Filter>소스 파일\proc</Filter>
+    </ClCompile>
+    <ClCompile Include="DRAW.cpp">
+      <Filter>소스 파일\class</Filter>
+    </ClCompile>
+    <ClCompile Include="WEBVIEW.cpp">
+      <Filter>소스 파일\class</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_knu.cpp">
+      <Filter>소스 파일\parsing</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_cie.cpp">
+      <Filter>소스 파일\parsing</Filter>
+    </ClCompile>
+    <ClCompile Include="parse_dormi.cpp">
+      <Filter>소스 파일\parsing</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_init.cpp">
+      <Filter>소스 파일\proc</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_list.cpp">
+      <Filter>소스 파일\proc</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_post.cpp">
+      <Filter>소스 파일\proc</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_tag.cpp">
+      <Filter>소스 파일\proc</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
