@@ -26,32 +26,6 @@ void DRAW::Rect(int x, int y, int size_x, int size_y, int r, int g, int b, int a
 	G.FillRectangle(&B, x, y, size_x, size_y);
 }
 
-void DRAW::Bitmap(int x, int y, int size_x, int size_y, HBITMAP hBit) {
-	GetClientRect(hWnd, &rc);
-	SelectObject(BackDC, hBit);
-	GetObject(hBit, sizeof(BITMAP), &bit);
-}
-
-void DRAW::Draw(int x, int y, int size_x, int size_y, int resource_num, const wchar_t* Type) {
-	GetClientRect(hWnd, &rc);
-	Graphics G(MemDC);
-	HRSRC hResource = FindResource(hInstance, MAKEINTRESOURCE(resource_num), Type);
-	if (!hResource) return;
-	DWORD imageSize = SizeofResource(hInstance, hResource);
-	HGLOBAL hGlobal = LoadResource(hInstance, hResource);
-	LPVOID pData = LockResource(hGlobal);
-	HGLOBAL hBuffer = GlobalAlloc(GMEM_MOVEABLE, imageSize);
-	LPVOID pBuffer = GlobalLock(hBuffer);
-	CopyMemory(pBuffer, pData, imageSize);
-	GlobalUnlock(hBuffer);
-	IStream *pStream;
-	HRESULT hr = CreateStreamOnHGlobal(hBuffer, TRUE, &pStream);
-	Image I(pStream);
-	pStream->Release();
-	if (I.GetLastStatus() != Ok) return;
-	G.DrawImage(&I, x, y, size_x, size_y);
-}
-
 void DRAW::Draw(int x, int y, int size_x, int size_y, const wchar_t* file) {
 	Graphics G(MemDC);
 	Image I(file);
@@ -97,10 +71,6 @@ void DRAW::Text(int x, int y, int size_x, int size_y, int font_size, int r, int 
 
 	G.SetTextRenderingHint(TextRenderingHintAntiAlias);
 	G.DrawString(Str, -1, &F, R, &sf, &B);
-}
-
-void DRAW::Rotate(Graphics G, int rotate) {
-	G.RotateTransform(rotate);
 }
 
 DRAW::~DRAW()

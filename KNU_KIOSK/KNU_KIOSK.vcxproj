@@ -88,7 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;CURL_STATICLIB;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -149,20 +149,31 @@
   <ItemGroup>
     <ClInclude Include="DRAW.h" />
     <ClInclude Include="header.h" />
+    <ClInclude Include="lib\curl\curl.h" />
+    <ClInclude Include="lib\gumbo\gumbo.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="WEBVIEW.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="encoding.cpp" />
+    <ClCompile Include="http_curl.cpp" />
+    <ClCompile Include="data.cpp" />
     <ClCompile Include="DRAW.cpp" />
+    <ClCompile Include="http_socket.cpp" />
+    <ClCompile Include="parser_food_dormi.cpp" />
+    <ClCompile Include="parser_food_knu.cpp" />
     <ClCompile Include="proc_init.cpp" />
-    <ClCompile Include="proc_list.cpp" />
+    <ClCompile Include="proc_main.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="parse_cie.cpp" />
-    <ClCompile Include="parse_dormi.cpp" />
-    <ClCompile Include="parse_knu.cpp" />
+    <ClCompile Include="parser_notice_cie.cpp" />
+    <ClCompile Include="parser_notice_dormi.cpp" />
+    <ClCompile Include="parser_notice_knu.cpp" />
     <ClCompile Include="proc.cpp" />
     <ClCompile Include="proc_tag.cpp" />
     <ClCompile Include="proc_post.cpp" />
+    <ClCompile Include="recv.cpp" />
+    <ClCompile Include="socket.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -170,6 +181,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="WEBVIEW.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="KNU_KIOSK.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resource\image\logo.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
