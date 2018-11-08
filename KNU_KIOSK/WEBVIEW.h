@@ -62,7 +62,7 @@ public:
 	HWND SParent(HWND);
 
 private:
-	IWebBrowser2 * pWebBrowser = nullptr;
+	IWebBrowser2* pWebBrowser = nullptr;
 	HWND hServer = NULL;
 };
 

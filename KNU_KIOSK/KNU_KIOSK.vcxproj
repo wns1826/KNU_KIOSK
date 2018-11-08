@@ -90,10 +90,12 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;CURL_STATICLIB;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -117,15 +119,17 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>WIN32;CURL_STATICLIB;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -148,8 +152,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DRAW.h" />
+    <ClInclude Include="HANGUL.h" />
     <ClInclude Include="header.h" />
-    <ClInclude Include="lib\curl\curl.h" />
     <ClInclude Include="lib\gumbo\gumbo.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -157,10 +161,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="encoding.cpp" />
-    <ClCompile Include="http_curl.cpp" />
+    <ClCompile Include="HANGUL.cpp" />
+    <ClCompile Include="http.cpp" />
     <ClCompile Include="data.cpp" />
     <ClCompile Include="DRAW.cpp" />
-    <ClCompile Include="http_socket.cpp" />
     <ClCompile Include="parser_food_dormi.cpp" />
     <ClCompile Include="parser_food_knu.cpp" />
     <ClCompile Include="proc_init.cpp" />

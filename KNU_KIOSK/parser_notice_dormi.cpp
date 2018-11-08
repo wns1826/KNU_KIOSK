@@ -3,7 +3,7 @@
 
 int parser_notice_dormi() {
 	string html;
-	http_get_curl_exe(LINK1, html);
+	curl_http_get(L"temp", html);
 
 	GumboOutput* parse = gumbo_parse(html.c_str());
 	//find_tbody(parse->root);

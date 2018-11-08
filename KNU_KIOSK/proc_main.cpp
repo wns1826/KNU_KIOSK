@@ -14,10 +14,19 @@ LRESULT CALLBACK proc_main(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		//Draw.Draw(0, 1641, 1080, 279, L"resource\\image\\list\\1.jpg");
 		h_clock = CreateWindow(L"kiosk_list_clock", L"list_clock", WS_CHILD | WS_VISIBLE, 800, 0, 280, 100, hWnd, (HMENU)NULL, hInstance, NULL);
 		//Draw.Draw(1980)
+
+		wstring cstr = L"";
+		for(int i = 0; i < title.size(); i++) {
+			cstr += title[i].title;
+			cstr += L"\n";
+		}
+
+		Draw.Text(50, 100, 980, 1650, 20, 0, 0, 0, L"¸¼Àº °íµñ", cstr.c_str());
 		break; }
 	case WM_TIMER: {
 		switch (wParam) {
-		case 1: break;
+		case 1:
+			break;
 		}
 	}
 	case WM_CLOSE:
@@ -35,7 +44,6 @@ LRESULT CALLBACK proc_main_clock(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM
 	switch (iMessage) {
 	case WM_CREATE: {
 		SetTimer(hWnd, 1, 1000, NULL);
-		SetTimer(hWnd, 2, 1000, NULL);
 		break; }
 	case WM_PAINT: {
 		DRAW Draw(hWnd);
@@ -59,9 +67,8 @@ LRESULT CALLBACK proc_main_clock(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM
 	case WM_TIMER: {
 		switch (wParam) {
 		case 1: //¾÷µ¥ÀÌÆ®
+			//printf("%d", td);
 			InvalidateRect(hWnd, NULL, FALSE);
-			break;
-		case 2:
 			td++;
 			break;
 		}

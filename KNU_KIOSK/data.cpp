@@ -1,7 +1,11 @@
 #include "stdafx.h"
-#include "header.h"
 
-//hwnd
+HINSTANCE hInstance;
+
 HWND h_main;
 HWND h_init;
-HWND h_child;
+HWND h_list;
+
+vector<notice> title;
+
+HANGUL Hangul;

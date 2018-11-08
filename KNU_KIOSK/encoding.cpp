@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "header.h"
 
-wchar_t* EncodeCharToWchar(const char* c_str, wchar_t* str) {
+wchar_t* EncodeCharToWchar(const char* c_str) {
 	int nLen = MultiByteToWideChar(CP_ACP, 0, c_str, strlen(c_str), NULL, NULL);
+	wchar_t* str = new wchar_t[nLen + 2];
 	MultiByteToWideChar(CP_ACP, 0, c_str, strlen(c_str), str, nLen);
 	str[nLen] = 0;
 	return str;

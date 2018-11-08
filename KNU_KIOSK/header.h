@@ -1,5 +1,7 @@
 #pragma once
 
+using namespace std;
+
 #define IP "127.0.0.1"
 #define PORT 2018
 
@@ -7,14 +9,13 @@
 #define WM_PROCESSING		WM_USER + 1
 #define WM_UPDATE_STATUS	WM_USER + 2
 
-using namespace std;
-
 struct notice {
-	string title;
-	string name;
-	string url;
 	int date = 0;
 	int view = 0;
+	wstring category;
+	wstring title;
+	wstring name;
+	wstring url;
 };
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -24,11 +25,13 @@ LRESULT CALLBACK proc_main_clock(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK proc_post(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK proc_tag(HWND, UINT, WPARAM, LPARAM);
 
-bool http_get_curl(const char *url, string &html); 
-int http_get_curl_exe(const wchar_t *url, string &html);
-int http_get_socket(std::string ip, string host, string get, int port, string &html);
+int curl_http_get(const wchar_t *url, string &html);
 
-int parser_notice_knu();
+int parser_notice_knu_1();
+int parser_notice_knu_2();
+int parser_notice_knu_3();
+int parser_notice_knu_4();
+int parser_notice_knu_5();
 int parser_notice_dormi();
 int parser_notice_cie();
 int parser_food_knu();
@@ -45,14 +48,12 @@ int sock_recv_n(SOCKET, char *);
 int sock_recv_d(SOCKET);
 int sock_recv_w(SOCKET, char *, int);
 
-wchar_t* EncodeCharToWchar(const char *, wchar_t *);
+wchar_t* EncodeCharToWchar(const char *);
 char* EncodeWcharToChar(const wchar_t *);
 
 extern HINSTANCE hInstance;
 extern HWND h_main;
 extern HWND h_init;
-extern HWND h_child;
+extern HWND h_list;
 
-//temp
-#define LINK L"http://naver.com"
-#define LINK1 L"http://google.com"
+extern vector<notice> title;

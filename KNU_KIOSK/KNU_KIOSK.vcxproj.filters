@@ -25,9 +25,6 @@
     <Filter Include="소스 파일\socket">
       <UniqueIdentifier>{13190581-81c8-4c51-b7d6-1b31357baf85}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\socket\http">
-      <UniqueIdentifier>{57de3721-d045-460a-8766-b8072d5f498c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="헤더 파일\lib">
       <UniqueIdentifier>{0e87a226-c7d2-4460-a63e-1cd153e5fa86}</UniqueIdentifier>
     </Filter>
@@ -57,11 +54,11 @@
     <ClInclude Include="lib\gumbo\gumbo.h">
       <Filter>헤더 파일\lib</Filter>
     </ClInclude>
-    <ClInclude Include="lib\curl\curl.h">
-      <Filter>헤더 파일\lib</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="HANGUL.h">
+      <Filter>헤더 파일\class</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -98,12 +95,6 @@
     <ClCompile Include="data.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="http_socket.cpp">
-      <Filter>소스 파일\socket\http</Filter>
-    </ClCompile>
-    <ClCompile Include="http_curl.cpp">
-      <Filter>소스 파일\socket\http</Filter>
-    </ClCompile>
     <ClCompile Include="encoding.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -124,6 +115,12 @@
     </ClCompile>
     <ClCompile Include="proc_main.cpp">
       <Filter>소스 파일\proc</Filter>
+    </ClCompile>
+    <ClCompile Include="http.cpp">
+      <Filter>소스 파일\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="HANGUL.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

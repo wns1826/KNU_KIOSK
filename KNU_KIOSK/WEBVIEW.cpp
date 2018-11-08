@@ -33,8 +33,6 @@ HRESULT WEBVIEW::ReadyState(void) {
 HWND WEBVIEW::hWnd(void) {
 	HWND hWnd_Web = NULL;
 	pWebBrowser->get_HWND((SHANDLE_PTR *)&hWnd_Web);
-
-	printf("0x%x\n", hWnd_Web);
 	return hWnd_Web;
 }
 
@@ -146,7 +144,6 @@ void WEBVIEW::Navigate(const wchar_t *url) {
 	::VariantInit(&vtHeader);
 
 	CComVariant *curl = new CComVariant(url);
-	//pWebBrowser->Navigate(((CString)url).AllocSysString(), &vtFlags, &vtTarget, &vtPostData, &vtHeader);
 	pWebBrowser->Navigate2(curl, &vtFlags, &vtTarget, &vtPostData, &vtHeader);
 
 	HWND test = this->hWnd();

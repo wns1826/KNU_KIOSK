@@ -47,26 +47,27 @@ const wchar_t init_title_empty[] = L"";
 void thread_init(HWND hWnd) {
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"서버에 연결하는 중", NULL);
+	//return;
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"공지사항 업데이트 중", NULL);
-	parser_notice_knu();
+	parser_notice_knu_1();
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학사/장학 갱신 중", NULL);
-	parser_notice_knu();
+	parser_notice_knu_2();
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"모집/안내/공고 갱신 중", NULL);
-	parser_notice_knu();
+	parser_notice_knu_3();
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"행사/뉴스 갱신 중", NULL);
-	parser_notice_knu();
+	parser_notice_knu_4();
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"교육/연구 갱신 중", NULL);
-	parser_notice_knu();
+	parser_notice_knu_5();
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학과 공지사항 갱신 중", NULL);
 	parser_notice_cie();
 
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"기숙사 공지사항 갱신 중", NULL);
+/*	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"기숙사 공지사항 갱신 중", NULL);
 	parser_notice_dormi();
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학식 갱신 중", NULL);
@@ -75,11 +76,12 @@ void thread_init(HWND hWnd) {
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"기숙사식 갱신 중", NULL);
 	parser_food_dormi();
 
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"동기화 중", NULL);
-	//PostMessage(h_child, WM_, NULL, NULL);
+	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"마무리 중", NULL);
+	//PostMessage(h_child, WM_, NULL, NULL);*/
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"완료", NULL);
-
+	
+	InvalidateRect(h_list, NULL, FALSE);
 	PostMessage(hWnd, WM_DESTROY, NULL, NULL);
 	return;
 }
@@ -101,7 +103,7 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		WebView.AddressBar(false);
 		WebView.MenuBar(false);
 		WebView.ToolBar(false);
-		WebView.Navigate(L"127.0.0.1/progress.html");
+		WebView.Navigate(L"kiosk.youn.in/progress.html");
 		WebView.SParent(hWnd);
 		WebView.SPos(415, 1450);
 
@@ -119,6 +121,7 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 	case WM_PAINT: {
 		DRAW Draw(hWnd);
 		//Draw.Rect(0, 0, 1080, 1920, 255, 255, 255);
+		Draw.Rect(0, 0, 1080, 1920, 255, 210, 0);
 		Draw.Draw(0, 0, 1080, 1920, L"resource\\image\\init\\init.png");
 		//Draw.Rect(110, 1680, 862, 140, 50, 50, 50, 150);
 		//Draw.Text(83, 55, 862, 150, 117, 0, 0, 0, L"Noto Sans CJK KR Thin", L"군산대의");
@@ -228,10 +231,7 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		status_text = (const wchar_t*)wParam;
 		InvalidateRect(hWnd, NULL, FALSE);
 		break; }
-	case WM_CLOSE:
-	case WM_QUIT:
-	case WM_DESTROY:
-	case WM_QUERYENDSESSION: {
+	case WM_DESTROY: {
 		if (!end) {
 
 			KillTimer(hWnd, 1);
@@ -240,7 +240,7 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 			KillTimer(hWnd, 5);
 			KillTimer(hWnd, 6);
 
-			t1 = init_title_1[11], t2 = init_title_2[5], t3 = init_title_3[8], t4 = init_title_4[7];
+			t1 = init_title_1[11], t2 = init_title_2[5], t3 = init_title_3[8], t4 = init_title_4[6];
 			InvalidateRect(hWnd, NULL, FALSE);
 
 			a_time = clock();
@@ -250,6 +250,11 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		}
 		WebView.~WEBVIEW();
 		break; }
+	case WM_CLOSE:
+	case WM_QUIT:
+	case WM_QUERYENDSESSION:
+		DestroyWindow(h_main);
+		break;
 	}
 	return(DefWindowProc(hWnd, iMessage, wParam, lParam));
 }
