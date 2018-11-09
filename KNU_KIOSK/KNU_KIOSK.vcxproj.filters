@@ -101,9 +101,6 @@
     <ClCompile Include="parser_notice_cie.cpp">
       <Filter>소스 파일\parser\notice</Filter>
     </ClCompile>
-    <ClCompile Include="parser_notice_dormi.cpp">
-      <Filter>소스 파일\parser\notice</Filter>
-    </ClCompile>
     <ClCompile Include="parser_notice_knu.cpp">
       <Filter>소스 파일\parser\notice</Filter>
     </ClCompile>

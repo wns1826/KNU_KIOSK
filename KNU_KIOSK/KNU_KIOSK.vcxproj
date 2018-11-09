@@ -171,7 +171,6 @@
     <ClCompile Include="proc_main.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parser_notice_cie.cpp" />
-    <ClCompile Include="parser_notice_dormi.cpp" />
     <ClCompile Include="parser_notice_knu.cpp" />
     <ClCompile Include="proc.cpp" />
     <ClCompile Include="proc_tag.cpp" />

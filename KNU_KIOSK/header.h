@@ -16,6 +16,7 @@ struct notice {
 	wstring title;
 	wstring name;
 	wstring url;
+	wstring file;
 };
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -25,7 +26,7 @@ LRESULT CALLBACK proc_main_clock(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK proc_post(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK proc_tag(HWND, UINT, WPARAM, LPARAM);
 
-int curl_http_get(const wchar_t *url, string &html);
+string curl_http_get(const wchar_t *url);
 
 int parser_notice_knu_1();
 int parser_notice_knu_2();

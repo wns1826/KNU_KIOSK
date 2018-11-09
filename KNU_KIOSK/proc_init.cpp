@@ -49,7 +49,7 @@ void thread_init(HWND hWnd) {
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"서버에 연결하는 중", NULL);
 	//return;
 
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"공지사항 업데이트 중", NULL);
+	/*PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"공지사항 업데이트 중", NULL);
 	parser_notice_knu_1();
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학사/장학 갱신 중", NULL);
@@ -62,7 +62,7 @@ void thread_init(HWND hWnd) {
 	parser_notice_knu_4();
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"교육/연구 갱신 중", NULL);
-	parser_notice_knu_5();
+	parser_notice_knu_5();*/
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학과 공지사항 갱신 중", NULL);
 	parser_notice_cie();

@@ -16,9 +16,11 @@ LRESULT CALLBACK proc_main(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		//Draw.Draw(1980)
 
 		wstring cstr = L"";
+		cout << title.size() << endl;
 		for(int i = 0; i < title.size(); i++) {
 			cstr += title[i].title;
 			cstr += L"\n";
+			cout << EncodeWcharToChar(title[i].category.c_str()) << " : " << EncodeWcharToChar(title[i].title.c_str()) << endl;
 		}
 
 		Draw.Text(50, 100, 980, 1650, 20, 0, 0, 0, L"¸¼Àº °íµñ", cstr.c_str());
