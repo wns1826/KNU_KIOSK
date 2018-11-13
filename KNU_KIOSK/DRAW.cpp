@@ -18,10 +18,12 @@ DRAW::DRAW(HWND hWnd, BOOL mem) {
 	else {
 		MemDC = hdc;
 	}
+//	G = new Graphics(MemDC);
 }
 
 void DRAW::Rect(int x, int y, int size_x, int size_y, int r, int g, int b, int a) {
 	Graphics G(MemDC);
+
 	SolidBrush B(Color(a, r, g, b));
 	G.FillRectangle(&B, x, y, size_x, size_y);
 }
@@ -33,7 +35,7 @@ void DRAW::Draw(int x, int y, int size_x, int size_y, const wchar_t* file) {
 	G.DrawImage(&I, x, y, size_x, size_y);
 }
 
-int DRAW::Text_Rect(int x, int y, int size_x, int font_size, const wchar_t* font, const wchar_t* Str_t) {
+int DRAW::Text_Rect(int font_size, const wchar_t* font, const wchar_t* Str_t) {
 	Graphics G(MemDC);
 	CharacterRange cr(0, wcslen(Str_t));
 	StringFormat sf;
@@ -42,12 +44,12 @@ int DRAW::Text_Rect(int x, int y, int size_x, int font_size, const wchar_t* font
 	RectF O;
 	Region rgn;
 
-	G.MeasureCharacterRanges(Str_t, wcslen(Str_t), &F, RectF(x, y, size_x, 10240), &sf, 1, &rgn);
+	G.MeasureCharacterRanges(Str_t, wcslen(Str_t), &F, RectF(0, 0, 10000, 80), &sf, 1, &rgn);
 	RectF rt;
 
 	rgn.GetBounds(&rt, &G);
 
-	return rt.Height;
+	return rt.Width;
 }
 
 void DRAW::Text(int x, int y, int size_x, int size_y, int font_size, int r, int g, int b, const wchar_t* font, const wchar_t* Str, int Alignment) {
@@ -73,6 +75,12 @@ void DRAW::Text(int x, int y, int size_x, int size_y, int font_size, int r, int 
 	G.DrawString(Str, -1, &F, R, &sf, &B);
 }
 
+void DRAW::Line(int x1, int y1, int x2, int y2, int line_size, int r, int g, int b, int a) {
+	Graphics G(MemDC);
+	Pen P(Color(r, g, b), line_size);
+	G.DrawLine(&P, x1, y1, x2, y2);
+}
+
 DRAW::~DRAW()
 {
 	if (mem) {
@@ -84,5 +92,4 @@ DRAW::~DRAW()
 	}
 	EndPaint(hWnd, &ps);
 	GdiplusShutdown(gpToken);
-
 }

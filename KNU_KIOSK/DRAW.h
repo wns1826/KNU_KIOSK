@@ -9,15 +9,14 @@ public:
 	void Rect(int x, int y, int size_x, int size_y, int r, int g, int b, int a = 255);
 	void Draw(int x, int y, int size_x, int size_y, const wchar_t* file);
 	void Text(int x, int y, int size_x, int size_y, int font_size, int r, int g, int b, const wchar_t* font, const wchar_t* Str, int Alignment = 0);
-	int Text_Rect(int x, int y, int size_x, int font_size, const wchar_t* font, const wchar_t* Str_t);
+	void Line(int x1, int y1, int x2, int y2, int line_size, int r, int g, int b, int a = 255);
+	int Text_Rect(int font_size, const wchar_t* font, const wchar_t* Str_t);
 	~DRAW();
-protected:
+private:
 	HWND hWnd;
 	RECT rc;
 	PAINTSTRUCT ps;
-public:
 	HDC hdc;
-protected:
 	ULONG_PTR gpToken;
 	GdiplusStartupInput gpsi;
 	HDC MemDC;
@@ -26,4 +25,5 @@ protected:
 	HDC BackDC;
 	BITMAP bit;
 	bool mem;
+//	Graphics* G;
 };

@@ -1,7 +1,35 @@
 #include "stdafx.h"
 #include "header.h"
 
-extern HANGUL Hangul;
+int find_tbody_cie(GumboNode *);
+int add_title_cie(GumboNode *);
+
+int parser_notice_cie() {
+	string html = curl_http_get(L"http://cie.kunsan.ac.kr/view/notices_data/6/listdata.do?searchtype=undefined&search=&&page=0");
+
+	GumboOutput* parse = gumbo_parse(html.c_str());
+	find_tbody_cie(parse->root);
+	gumbo_destroy_output(&kGumboDefaultOptions, parse);
+
+	return 0;
+}
+
+int find_tbody_cie(GumboNode* node) {
+	if (node->type != GUMBO_NODE_ELEMENT) {
+		return -1;
+	}
+	else if (node->v.element.tag == GUMBO_TAG_TBODY) {
+		add_title_cie(node);
+		return 1;
+	}
+
+	GumboVector* children = &node->v.element.children;
+	for (int i = 0; i < children->length; ++i) {
+		if (find_tbody_cie(static_cast<GumboNode*>(children->data[i])) == 1)
+			break;
+	}
+	return 0;
+}
 
 int add_title_cie(GumboNode* tbody) {
 	GumboVector* tbody_child = &tbody->v.element.children;
@@ -11,7 +39,7 @@ int add_title_cie(GumboNode* tbody) {
 			GumboVector* tr_child = &tr->v.element.children;
 			notice temp;
 			int td_num = 0;
-			temp.category = L"학과";
+			temp.category = 7;
 			for (int j = 0; j < tr_child->length; j++) {
 				GumboNode* td = (GumboNode*)tr_child->data[j];
 				if (td->type == GUMBO_NODE_ELEMENT && td->v.element.tag == GUMBO_TAG_TD) {
@@ -33,10 +61,10 @@ int add_title_cie(GumboNode* tbody) {
 						}
 					}
 					else if (td_num == 2) { //첨부
-						
+
 					}
 					else if (td_num == 3) { //등록자
-						
+
 					}
 					else if (td_num == 4) { //등록일
 						GumboNode* td_text = (GumboNode*)td_child->data[0];
@@ -55,33 +83,5 @@ int add_title_cie(GumboNode* tbody) {
 			title.push_back(temp);
 		}
 	}
-	return 0;
-}
-
-int find_tbody_cie(GumboNode* node) {
-	if (node->type != GUMBO_NODE_ELEMENT) {
-		return -1;
-	}
-	else if (node->v.element.tag == GUMBO_TAG_TBODY) {
-		add_title_cie(node);
-		return 1;
-	}
-
-	GumboVector* children = &node->v.element.children;
-	for (int i = 0; i < children->length; ++i) {
-		if (find_tbody_cie(static_cast<GumboNode*>(children->data[i])) == 1)
-			break;
-	}
-	return 0;
-}
-
-
-int parser_notice_cie() {
-	string html = curl_http_get(L"http://cie.kunsan.ac.kr/view/notices_data/6/listdata.do?searchtype=undefined&search=&&page=0");
-
-	GumboOutput* parse = gumbo_parse(html.c_str());
-	find_tbody_cie(parse->root);
-	gumbo_destroy_output(&kGumboDefaultOptions, parse);
-
 	return 0;
 }

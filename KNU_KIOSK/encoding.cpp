@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "header.h"
 
 wchar_t* EncodeCharToWchar(const char* c_str) {
 	int nLen = MultiByteToWideChar(CP_ACP, 0, c_str, strlen(c_str), NULL, NULL);

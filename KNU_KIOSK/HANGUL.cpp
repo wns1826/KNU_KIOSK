@@ -59,6 +59,15 @@ wstring HANGUL::get(wstring w_str) {
 	return w_str;
 }
 
+wstring HANGUL::del_space(wstring w_str) {
+	wstring wstr;
+	for (int i = 0; i < w_str.length(); i++) {
+		if (w_str[i] != ' ' && w_str[i] != '\t' && w_str[i] != '\n')
+			wstr += w_str[i];
+	}
+	return wstr;
+}
+
 HANGUL::~HANGUL()
 {
 }

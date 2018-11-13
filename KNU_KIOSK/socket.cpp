@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "header.h"
 
 int sock_send_c(SOCKET sock, char ch) {
 	char str[2] = { ch, 0 };

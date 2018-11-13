@@ -37,14 +37,32 @@
     <Filter Include="소스 파일\parser\food">
       <UniqueIdentifier>{48712ae2-1e96-4cc8-b688-44cdfa92050e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\proc\main">
+      <UniqueIdentifier>{84ffb54e-18e2-4c51-af13-10e3b26e3d78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\proc\init">
+      <UniqueIdentifier>{cee3218c-77cd-4400-9eec-70195574283e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\header">
+      <UniqueIdentifier>{c895397f-fb58-4748-b5fd-885f3a036e5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\parser\other">
+      <UniqueIdentifier>{a3188e17-ab68-4e30-813e-141de7d1bcfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\proc\main\notice">
+      <UniqueIdentifier>{623dac3d-9424-40ec-ba9f-2f461b20ea7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\proc\main\food">
+      <UniqueIdentifier>{e39ed12e-2bee-46b0-b37f-75dc3ddcd683}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\proc\main\bus">
+      <UniqueIdentifier>{7c4e5cd9-6b14-46cd-ab8c-729a3f0a9407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\proc\main\calendar">
+      <UniqueIdentifier>{43e1ad67-e0db-4dfe-9e2a-7934c91c9163}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="header.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="WEBVIEW.h">
       <Filter>헤더 파일\class</Filter>
     </ClInclude>
@@ -59,6 +77,12 @@
     </ClInclude>
     <ClInclude Include="HANGUL.h">
       <Filter>헤더 파일\class</Filter>
+    </ClInclude>
+    <ClInclude Include="header.h">
+      <Filter>헤더 파일\header</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,15 +101,6 @@
     <ClCompile Include="WEBVIEW.cpp">
       <Filter>소스 파일\class</Filter>
     </ClCompile>
-    <ClCompile Include="proc_init.cpp">
-      <Filter>소스 파일\proc</Filter>
-    </ClCompile>
-    <ClCompile Include="proc_post.cpp">
-      <Filter>소스 파일\proc</Filter>
-    </ClCompile>
-    <ClCompile Include="proc_tag.cpp">
-      <Filter>소스 파일\proc</Filter>
-    </ClCompile>
     <ClCompile Include="recv.cpp">
       <Filter>소스 파일\socket</Filter>
     </ClCompile>
@@ -101,23 +116,56 @@
     <ClCompile Include="parser_notice_cie.cpp">
       <Filter>소스 파일\parser\notice</Filter>
     </ClCompile>
-    <ClCompile Include="parser_notice_knu.cpp">
-      <Filter>소스 파일\parser\notice</Filter>
-    </ClCompile>
     <ClCompile Include="parser_food_dormi.cpp">
       <Filter>소스 파일\parser\food</Filter>
     </ClCompile>
     <ClCompile Include="parser_food_knu.cpp">
       <Filter>소스 파일\parser\food</Filter>
     </ClCompile>
-    <ClCompile Include="proc_main.cpp">
-      <Filter>소스 파일\proc</Filter>
-    </ClCompile>
     <ClCompile Include="http.cpp">
       <Filter>소스 파일\socket</Filter>
     </ClCompile>
+    <ClCompile Include="init.cpp">
+      <Filter>소스 파일\proc\init</Filter>
+    </ClCompile>
     <ClCompile Include="HANGUL.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\class</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_init.cpp">
+      <Filter>소스 파일\proc\init</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_main.cpp">
+      <Filter>소스 파일\proc\main</Filter>
+    </ClCompile>
+    <ClCompile Include="parser_bus.cpp">
+      <Filter>소스 파일\parser\other</Filter>
+    </ClCompile>
+    <ClCompile Include="parser_calendar.cpp">
+      <Filter>소스 파일\parser\other</Filter>
+    </ClCompile>
+    <ClCompile Include="parser_popup.cpp">
+      <Filter>소스 파일\parser\other</Filter>
+    </ClCompile>
+    <ClCompile Include="main_child.cpp">
+      <Filter>소스 파일\proc\main</Filter>
+    </ClCompile>
+    <ClCompile Include="main_popup.cpp">
+      <Filter>소스 파일\proc\main</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_main_notice.cpp">
+      <Filter>소스 파일\proc\main\notice</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_main_calendar.cpp">
+      <Filter>소스 파일\proc\main\calendar</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_main_bus.cpp">
+      <Filter>소스 파일\proc\main\bus</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_main_food.cpp">
+      <Filter>소스 파일\proc\main\food</Filter>
+    </ClCompile>
+    <ClCompile Include="parser_notice_knu+dormi.cpp">
+      <Filter>소스 파일\parser\notice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

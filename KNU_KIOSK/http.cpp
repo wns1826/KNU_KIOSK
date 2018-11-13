@@ -1,7 +1,4 @@
 #include "stdafx.h"
-#include "header.h"
-
-extern HANGUL Hangul;
 
 string curl_http_get(const wchar_t *url) {
 	wstring wstr;
@@ -20,11 +17,11 @@ string curl_http_get(const wchar_t *url) {
 	sei.fMask = SEE_MASK_NOCLOSEPROCESS;
 	sei.lpVerb = L"open";
 	
-	/*ShellExecuteEx(&sei);
-	if (sei.hProcess != NULL)
-	{
-		::WaitForSingleObject(sei.hProcess, INFINITE);
-	}*/
+	//ShellExecuteEx(&sei);
+	//if (sei.hProcess != NULL)
+	//{
+	//	::WaitForSingleObject(sei.hProcess, INFINITE);
+	//}
 
 	wstring path = _wgetenv(L"TEMP");
 	path += L"\\knu_kiosk.temp";

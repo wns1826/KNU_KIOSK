@@ -1,91 +1,6 @@
 #include "stdafx.h"
 #include "header.h"
 
-const wchar_t init_title_1[12][6] = {
-	L"ㄱ_",
-	L"구_",
-	L"군_",
-	L"군ㅅ_",
-	L"군사_",
-	L"군산_",
-	L"군산ㄷ_",
-	L"군산대_",
-	L"군산대ㅇ_",
-	L"군산대으_",
-	L"군산대의_",
-	L"군산대의" };
-const wchar_t init_title_2[6][4] = {
-	L"ㅁ_",
-	L"모_",
-	L"모ㄷ_",
-	L"모드_",
-	L"모든_",
-	L"모든" };
-const wchar_t init_title_3[9][5] = {
-	L"ㄱ_",
-	L"고_",
-	L"공_",
-	L"공ㅈ_",
-	L"공지_",
-	L"공지ㄹ_",
-	L"공지르_",
-	L"공지를_",
-	L"공지를" };
-const wchar_t init_title_4[7][4] = {
-	L"ㄷ_",
-	L"다_",
-	L"담_",
-	L"담ㄷ_",
-	L"담다_",
-	L"담다_",
-	L"담다" };
-const wchar_t init_title_4_ani[2][4] = {
-	L"담다",
-	L"담다_" };
-const wchar_t init_title_empty[] = L"";
-
-void thread_init(HWND hWnd) {
-
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"서버에 연결하는 중", NULL);
-	//return;
-
-	/*PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"공지사항 업데이트 중", NULL);
-	parser_notice_knu_1();
-
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학사/장학 갱신 중", NULL);
-	parser_notice_knu_2();
-
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"모집/안내/공고 갱신 중", NULL);
-	parser_notice_knu_3();
-
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"행사/뉴스 갱신 중", NULL);
-	parser_notice_knu_4();
-
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"교육/연구 갱신 중", NULL);
-	parser_notice_knu_5();*/
-
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학과 공지사항 갱신 중", NULL);
-	parser_notice_cie();
-
-/*	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"기숙사 공지사항 갱신 중", NULL);
-	parser_notice_dormi();
-
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학식 갱신 중", NULL);
-	parser_food_knu();
-
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"기숙사식 갱신 중", NULL);
-	parser_food_dormi();
-
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"마무리 중", NULL);
-	//PostMessage(h_child, WM_, NULL, NULL);*/
-
-	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"완료", NULL);
-	
-	InvalidateRect(h_list, NULL, FALSE);
-	PostMessage(hWnd, WM_DESTROY, NULL, NULL);
-	return;
-}
-
 LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam) {
 	static WEBVIEW WebView;
 	static int a = 255;
@@ -141,7 +56,7 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 				cnt_txt = 0;
 				th_init = new thread(&thread_init, hWnd);
 				SetTimer(hWnd, 3, 130, NULL);
-				ShowWindow(h_main, SW_SHOW);
+				ShowWindow(hwnd, SW_SHOW);
 			}
 			SetLayeredWindowAttributes(hWnd, NULL, a, LWA_ALPHA);
 			break;
@@ -253,7 +168,7 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 	case WM_CLOSE:
 	case WM_QUIT:
 	case WM_QUERYENDSESSION:
-		DestroyWindow(h_main);
+		DestroyWindow(hwnd);
 		break;
 	}
 	return(DefWindowProc(hWnd, iMessage, wParam, lParam));

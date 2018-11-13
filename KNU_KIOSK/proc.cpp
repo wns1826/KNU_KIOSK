@@ -4,8 +4,8 @@
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam) {
 	switch (iMessage) {
 	case WM_CREATE: {
-		h_init = CreateWindow(L"kiosk_init", L"init", WS_POPUP | WS_VISIBLE, 1920, 0, 1080, 1920, hWnd, (HMENU)NULL, hInstance, NULL);
-		h_list = CreateWindow(L"kiosk_list", L"list", WS_CHILD | WS_VISIBLE, 0, 0, 1080, 1920, hWnd, (HMENU)NULL, hInstance, NULL);
+		h_init = CreateWindow(L"kiosk_init", L"init", WS_POPUP | WS_CLIPCHILDREN | WS_VISIBLE, 1920, 0, 1080, 1920, hWnd, (HMENU)NULL, hInstance, NULL);
+		h_main = CreateWindow(L"kiosk_main", L"list", WS_CHILD | WS_CLIPCHILDREN | WS_VISIBLE, 0, 0, 1080, 1920, hWnd, (HMENU)NULL, hInstance, NULL);
 		break; }
 	case WM_PAINT: {
 		/*DRAW Draw(hWnd);
