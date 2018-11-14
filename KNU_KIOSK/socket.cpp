@@ -19,10 +19,10 @@ int sock_send_t(SOCKET sock) {
 	return len == SOCKET_ERROR ? true : false;
 }
 
-int sock_send_n(SOCKET sock, const char* str, const char* str1) {
+int sock_send_n(SOCKET sock, const char* str) {
 	int len;
 	char buffer[102400];
-	sprintf(buffer, "%s%.4d%s", str, strlen(str1), str1);
+	sprintf(buffer, "%.4d%s", strlen(str), str);
 	len = send(sock, buffer, strlen(buffer), NULL);
 	return len;
 }

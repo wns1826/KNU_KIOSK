@@ -12,9 +12,6 @@ LRESULT CALLBACK proc_main_clock(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM
 		DRAW Draw(hWnd);
 		Draw.Rect(0, 0, 1080, 100, 0, 128, 255);
 
-		Draw.Text(0, 0, 1080, 100, 50, 0, 0, 0, L"¸¼Àº °íµñ", L"ÄÄÇ»ÅÍÁ¤º¸°øÇÐ°ú", 1);
-		Draw.Draw(0, 0, 279, 73, L"resource\\image\\list\\logo+txt.png");
-
 		time_t t = std::time(0);
 		tm* now = std::localtime(&t);
 		wchar_t w_str[10];
@@ -27,7 +24,9 @@ LRESULT CALLBACK proc_main_clock(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM
 				td = 0;
 		}
 
-		Draw.Text(780, 10, 280, 100, 50, 255, 255, 255, L"¸¼Àº °íµñ", w_str, 2);
+		Draw.Draw(15, 23, 214, 56, L"resource\\image\\list\\logo+txt.png");
+		Draw.Text(0, 13, 1080, 100, 50, 255, 255, 255, L"¸¼Àº °íµñ", L"ÄÄÇ»ÅÍÁ¤º¸°øÇÐ°ú", 1);
+		Draw.Text(780, 13, 280, 100, 50, 255, 255, 255, L"¸¼Àº °íµñ", w_str, 2);
 
 		break; }
 	case WM_TIMER: {

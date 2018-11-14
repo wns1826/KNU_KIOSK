@@ -44,6 +44,7 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		Draw.Text(83, 289, 862, 150, 117, 0, 0, 0, L"Noto Sans CJK KR Thin", t2);
 		Draw.Text(83, 416, 862, 150, 117, 0, 0, 0, L"Noto Sans CJK KR Thin", t3);
 		Draw.Text(83, 543, 862, 150, 117, 0, 0, 0, L"Noto Sans CJK KR Thin", t4);
+		Draw.Text(110, 705, 862, 140, 50, 244, 118, 9, L"Noto Sans CJK KR Regular", status_text.c_str(), 1);
 		Draw.Text(110, 1705, 862, 140, 50, 244, 118, 9, L"Noto Sans CJK KR Regular", status_text.c_str(), 1);
 		break; }
 	case WM_TIMER: {

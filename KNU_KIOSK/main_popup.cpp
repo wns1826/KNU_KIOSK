@@ -14,6 +14,8 @@ LRESULT CALLBACK proc_popup_post(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM
 		Draw.Text(10, 1130, 980, 100, 40, 0, 0, 0, L"Noto Sans CJK KR DemiLight", L"모바일에서 확인하기", 1);
 		break; }
 	case WM_USER + 1: {
+		sock_send_n(sock, EncodeWcharToChar((wchar_t*)wParam));
+
 		WebView = new WEBVIEW();
 		WebView->Size(980, 1100);
 		WebView->AddressBar(false);

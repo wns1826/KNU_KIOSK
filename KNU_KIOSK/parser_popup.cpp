@@ -46,14 +46,20 @@ int add_popup_image(GumboNode* node) {
 		GumboAttribute* img_src = gumbo_get_attribute(&node->v.element.attributes, "src");
 		if (img_src != NULL) {
 			const char* str = img_src->value;
-			//다운받고
-			knu_popup.push_back(L"%TEMP%");
+			char url[1000], file[1000];
+			char *path = getenv("TEMP");
+			sprintf(url, "http://www.kunsan.ac.kr%s", str);
+			sprintf(file, "%s\\%knu_kiosk_popup_%d.jpg", path, knu_popup.size());
+
+			printf("URL == %s\n\n", url);
+			curl_http_get_download(url, file);
+			knu_popup.push_back(EncodeCharToWchar(file));
 		}
 	}
 
 	GumboVector* children = &node->v.element.children;
 	for (int i = 0; i < children->length; ++i) {
-		if (find_popup_ul(static_cast<GumboNode*>(children->data[i])) == 1)
+		if (add_popup_image(static_cast<GumboNode*>(children->data[i])) == 1)
 			break;
 	}
 	return 0;

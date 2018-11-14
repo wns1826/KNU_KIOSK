@@ -2,9 +2,29 @@
 #include "header.h"
 
 void thread_init(HWND hWnd) {
+	wchar_t w_str[1000];
 
-	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"서버에 연결하는 중", NULL);
-	////return;
+	wcscpy(w_str, L"서버에 연결하는 중");
+	for (int i = 1; sock == SOCKET_ERROR; i++) {
+		PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)w_str, NULL);
+		
+		WSADATA	WSAData;
+		SOCKADDR_IN addr;
+
+		WSAStartup(MAKEWORD(2, 0), &WSAData);
+		sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+		if (sock == INVALID_SOCKET) return;
+		addr.sin_family = AF_INET;
+		addr.sin_port = htons(PORT);
+		addr.sin_addr.S_un.S_addr = inet_addr(IP);
+		if (connect(sock, (struct sockaddr *)&addr, sizeof(addr)) == SOCKET_ERROR) {
+			closesocket(sock);
+			WSACleanup();
+			sock = SOCKET_ERROR;
+		}
+		wsprintf(w_str, L"서버 연결 실패... 재시도 중 (%d)", i);
+	}
+
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"공지사항 업데이트 중", NULL);
 	parser_notice_knu_1();
@@ -40,8 +60,8 @@ void thread_init(HWND hWnd) {
 	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"통학버스 갱신 중", NULL);
 	//parser_bus();
 
-	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"통학버스 갱신 중", NULL);
-	//parser_popup();
+	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"팝업이미지 받는 중", NULL);
+	parser_popup();
 
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"마무리 중", NULL);
 	sort(title.begin(), title.end(), [](const notice &t1, const notice &t2) {

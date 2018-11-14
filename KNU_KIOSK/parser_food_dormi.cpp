@@ -37,7 +37,7 @@ int find_tbody_food_dormi(GumboNode* node, int *n) {
 
 int add_food_dormi(GumboNode* tbody) {
 	GumboVector* tbody_child = &tbody->v.element.children;
-	int tr = 0;
+	int tr_num = 0;
 	for (int i = 0; i < tbody_child->length; i++) {
 		GumboNode* tr = (GumboNode*)tbody_child->data[i];
 		if (tr->type == GUMBO_NODE_ELEMENT && tr->v.element.tag == GUMBO_TAG_TR) {
@@ -51,13 +51,13 @@ int add_food_dormi(GumboNode* tbody) {
 						GumboNode* td_text = (GumboNode*)td_child->data[k];
 						if (td_text->type == GUMBO_NODE_TEXT) {
 							wstring menu = Hangul.del_space(Hangul.get(EncodeCharToWchar(td_text->v.text.text)));
-							printf("%s\n", EncodeWcharToChar(menu.c_str()));
+							food_dormi[td_num][tr_num].push_back(menu);
 						}
 					}
-					printf("\n\n");
 					td_num++;
 				}
 			}
+			tr_num++;
 		}
 	}
 	return 0;

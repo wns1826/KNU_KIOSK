@@ -50,10 +50,14 @@ int add_food_knu(GumboNode* tbody) {
 							GumboNode* td_text = (GumboNode*)td_child->data[k];
 							if (td_text->type == GUMBO_NODE_TEXT) {
 								wstring menu = Hangul.del_space(Hangul.get(EncodeCharToWchar(td_text->v.text.text)));
-								printf("%s\n", EncodeWcharToChar(menu.c_str()));
+								switch (tr_num) {
+								case 0: food_knu_teacher[td_num][0].push_back(menu); break;
+								case 1: food_knu_student[td_num][0].push_back(menu); break;
+								case 2: food_knu_teacher[td_num][1].push_back(menu); break;
+								case 3: food_knu_student[td_num][1].push_back(menu); break;
+								}
 							}
 						}
-						printf("\n\n");
 						td_num++;
 					}
 				}

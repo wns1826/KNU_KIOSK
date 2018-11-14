@@ -3,10 +3,11 @@
 using namespace std;
 
 #define IP "127.0.0.1"
-#define PORT 2018
+#define PORT 4996
 
 //공통
 #define WM_DRAW				WM_APP  + 1
+#define WM_RECV				WM_APP  + 2
 //proc_init
 #define WM_PROCESSING		WM_USER + 1
 #define WM_UPDATE_STATUS	WM_USER + 2
@@ -53,13 +54,15 @@ int parser_calendar_2();	//대학원 학사일정
 int parser_bus();			//통학버스
 int parser_popup();			//학교 상단 팝업
 
-string curl_http_get(const wchar_t *url);
+int curl_http_get(const char *, string &);
+string curl_http_get(const wchar_t *); 
+int curl_http_get_download(string, string);
 
 int sock_send_c(SOCKET, char);
 int sock_send(SOCKET, const char *);
 int sock_send_t(SOCKET);
 int sock_recv_c(SOCKET);
-int sock_send_n(SOCKET, const char *, const char *);
+int sock_send_n(SOCKET sock, const char *);
 int sock_recv_n(SOCKET, char *, int);
 int sock_recv(SOCKET, char *, int);
 int sock_recv_n(SOCKET, char *);
@@ -82,6 +85,8 @@ extern HWND h_popup;
 //main_popup
 extern HWND h_post;
 extern HWND h_tag;
+
+extern SOCKET sock;
 
 extern vector<notice> title;
 extern vector<wstring> food_knu_student[7][2];

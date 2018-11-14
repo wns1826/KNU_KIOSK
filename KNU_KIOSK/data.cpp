@@ -16,6 +16,8 @@ HWND h_popup;
 HWND h_post;
 HWND h_tag;
 
+SOCKET sock = SOCKET_ERROR;
+
 vector<notice> title;						//공지
 vector<wstring> food_knu_student[7][2];		//학식
 vector<wstring> food_knu_teacher[7][2];		//교직원식
