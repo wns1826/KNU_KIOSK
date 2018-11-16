@@ -49,18 +49,6 @@
     <Filter Include="소스 파일\parser\other">
       <UniqueIdentifier>{a3188e17-ab68-4e30-813e-141de7d1bcfc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\proc\main\notice">
-      <UniqueIdentifier>{623dac3d-9424-40ec-ba9f-2f461b20ea7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\proc\main\food">
-      <UniqueIdentifier>{e39ed12e-2bee-46b0-b37f-75dc3ddcd683}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\proc\main\bus">
-      <UniqueIdentifier>{7c4e5cd9-6b14-46cd-ab8c-729a3f0a9407}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\proc\main\calendar">
-      <UniqueIdentifier>{43e1ad67-e0db-4dfe-9e2a-7934c91c9163}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WEBVIEW.h">
@@ -152,20 +140,20 @@
     <ClCompile Include="main_popup.cpp">
       <Filter>소스 파일\proc\main</Filter>
     </ClCompile>
-    <ClCompile Include="proc_main_notice.cpp">
-      <Filter>소스 파일\proc\main\notice</Filter>
-    </ClCompile>
-    <ClCompile Include="proc_main_calendar.cpp">
-      <Filter>소스 파일\proc\main\calendar</Filter>
-    </ClCompile>
-    <ClCompile Include="proc_main_bus.cpp">
-      <Filter>소스 파일\proc\main\bus</Filter>
-    </ClCompile>
-    <ClCompile Include="proc_main_food.cpp">
-      <Filter>소스 파일\proc\main\food</Filter>
-    </ClCompile>
     <ClCompile Include="parser_notice_knu+dormi.cpp">
       <Filter>소스 파일\parser\notice</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_main_notice.cpp">
+      <Filter>소스 파일\proc\main</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_main_food.cpp">
+      <Filter>소스 파일\proc\main</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_main_calendar.cpp">
+      <Filter>소스 파일\proc\main</Filter>
+    </ClCompile>
+    <ClCompile Include="proc_main_bus.cpp">
+      <Filter>소스 파일\proc\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

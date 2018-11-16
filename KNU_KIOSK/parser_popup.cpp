@@ -51,7 +51,6 @@ int add_popup_image(GumboNode* node) {
 			sprintf(url, "http://www.kunsan.ac.kr%s", str);
 			sprintf(file, "%s\\%knu_kiosk_popup_%d.jpg", path, knu_popup.size());
 
-			printf("URL == %s\n\n", url);
 			curl_http_get_download(url, file);
 			knu_popup.push_back(EncodeCharToWchar(file));
 		}

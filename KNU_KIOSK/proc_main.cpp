@@ -13,7 +13,7 @@ LRESULT CALLBACK proc_main(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		DRAW Draw(hWnd);
 		Draw.Rect(0, 0, 1080, 1920, 255, 255, 255);
 		break; }
-	case WM_DRAW:
+	case WM_REDRAW:
 		InvalidateRect(hWnd, NULL, FALSE);
 		break;
 	case WM_PAGE:

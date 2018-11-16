@@ -2,17 +2,19 @@
 
 using namespace std;
 
-#define IP "127.0.0.1"
+#define IP "52.231.154.58"
 #define PORT 4996
 
 //공통
-#define WM_DRAW				WM_APP  + 1
+#define WM_REDRAW			WM_APP  + 1
 #define WM_RECV				WM_APP  + 2
 //proc_init
 #define WM_PROCESSING		WM_USER + 1
 #define WM_UPDATE_STATUS	WM_USER + 2
 //proc_main
 #define WM_PAGE				WM_USER + 1
+//proc_popup_post
+#define WM_URL				WM_USER + 1
 
 struct notice {
 	int date = 0;
@@ -39,6 +41,7 @@ LRESULT CALLBACK proc_popup_tag(HWND, UINT, WPARAM, LPARAM);
 
 void WndReg();
 void thread_init(HWND);
+void setup();
 
 int parser_notice_knu_1();	//학교 공지
 int parser_notice_knu_2();	//학교 학사/장학
@@ -88,12 +91,18 @@ extern HWND h_tag;
 
 extern SOCKET sock;
 
+extern tm* update_last;
+extern int update_h, update_m;
+
 extern vector<notice> title;
 extern vector<wstring> food_knu_student[7][2];
 extern vector<wstring> food_knu_teacher[7][2];
 extern vector<wstring> food_dormi[7][3];
 extern vector<wstring> knu_popup;
 
+extern bool init_end;
+
+extern const wchar_t day_text[8];
 extern const wchar_t init_title_1[12][6];
 extern const wchar_t init_title_2[6][4];
 extern const wchar_t init_title_3[9][5];
@@ -102,4 +111,5 @@ extern const wchar_t init_title_4_ani[2][4];
 extern const wchar_t init_title_empty[1];
 
 extern const int category_num[8];
+extern const int category_color[8][3];
 extern const wstring category[8][3];

@@ -18,6 +18,9 @@ HWND h_tag;
 
 SOCKET sock = SOCKET_ERROR;
 
+tm* update_last;
+int update_h, update_m;
+
 vector<notice> title;						//공지
 vector<wstring> food_knu_student[7][2];		//학식
 vector<wstring> food_knu_teacher[7][2];		//교직원식
@@ -26,8 +29,9 @@ vector<wstring> knu_popup;					//팝업 경로 (이미지 파싱 후 다운받은 로컬 경로[%T
 
 HANGUL Hangul;
 
+bool init_end = false;
 
-
+const wchar_t day_text[8] = L"일월화수목금토";
 //init 제목 애니메이션
 const wchar_t init_title_1[12][6] = {
 	L"ㄱ_",
@@ -74,6 +78,7 @@ const wchar_t init_title_empty[1] = L"";
 
 //main 공지 카테고리
 const int category_num[8] = { 1, 2, 3, 2, 2, 1, 1, 1 };
+const int category_color[8][3] = { {0, 0, 0}, {129, 210, 55}, {255, 53, 143}, {255, 98, 0}, {127, 100, 169}, {84, 125, 190}, {174, 238, 81}, {7, 223, 228} };
 const wstring category[8][3] = {
 	{L"공지", L"", L""},
 	{L"학사", L"장학", L"" },

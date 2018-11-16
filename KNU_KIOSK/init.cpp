@@ -29,34 +29,36 @@ void thread_init(HWND hWnd) {
 	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"공지사항 업데이트 중", NULL);
 	parser_notice_knu_1();
 
-	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학사/장학 갱신 중", NULL);
-	//parser_notice_knu_2();
+	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학사/장학 갱신 중", NULL);
+	parser_notice_knu_2();
 
-	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"모집/안내/공고 갱신 중", NULL);
-	//parser_notice_knu_3();
+	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"모집/안내/공고 갱신 중", NULL);
+	parser_notice_knu_3();
 
-	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"행사/뉴스 갱신 중", NULL);
-	//parser_notice_knu_4();
+	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"행사/뉴스 갱신 중", NULL);
+	parser_notice_knu_4();
 
-	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"교육/연구 갱신 중", NULL);
-	//parser_notice_knu_5();
+	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"교육/연구 갱신 중", NULL);
+	parser_notice_knu_5();
 
-	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학과 공지사항 갱신 중", NULL);
-	//parser_notice_cie();
+	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학과 공지사항 갱신 중", NULL);
+	parser_notice_cie();
 
-	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"기숙사 공지사항 갱신 중", NULL);
-	//parser_notice_dormi();
+	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"기숙사 공지사항 갱신 중", NULL);
+	parser_notice_dormi();
 
-	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학식 갱신 중", NULL);
-	//parser_food_knu();
+	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학식 갱신 중", NULL);
+	parser_food_knu();
 
-	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"기숙사식 갱신 중", NULL);
-	//parser_food_dormi();
+	PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"기숙사식 갱신 중", NULL);
+	parser_food_dormi();
 
+	//학사일정은 웹뷰로 대체중
 	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"학사일정 갱신 중", NULL);
 	//parser_calendar_1();
 	//parser_calendar_2();
 
+	//통학버스는 웹뷰로 대체중
 	//PostMessage(hWnd, WM_UPDATE_STATUS, (WPARAM)L"통학버스 갱신 중", NULL);
 	//parser_bus();
 
@@ -81,4 +83,17 @@ void thread_init(HWND hWnd) {
 	PostMessage(hWnd, WM_DESTROY, NULL, NULL);
 
 	return;
+}
+
+void setup() {
+	title.clear();
+	for (int i = 0; i < 7; i++) {
+		for (int j = 0; j < 2; j++) {
+			food_knu_student[i][j].clear();
+			food_knu_teacher[i][j].clear();
+		}
+		for (int j = 0; j < 3; j++)
+			food_dormi[i][j].clear();
+	}
+	knu_popup.clear();
 }

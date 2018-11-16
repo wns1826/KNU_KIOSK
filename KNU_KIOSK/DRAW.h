@@ -10,7 +10,8 @@ public:
 	void Draw(int x, int y, int size_x, int size_y, const wchar_t* file);
 	void Text(int x, int y, int size_x, int size_y, int font_size, int r, int g, int b, const wchar_t* font, const wchar_t* Str, int Alignment = 0);
 	void Line(int x1, int y1, int x2, int y2, int line_size, int r, int g, int b, int a = 255);
-	int Text_Rect(int font_size, const wchar_t* font, const wchar_t* Str_t);
+	int Text_Rect_x(int font_size, const wchar_t* font, const wchar_t* Str_t);
+	int Text_Rect_y(int font_size, const wchar_t* font, const wchar_t* Str_t);
 	~DRAW();
 private:
 	HWND hWnd;

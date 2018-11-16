@@ -50,11 +50,9 @@ string curl_http_get(const wchar_t *url) {
 	wstring wstr;
 	wstr = L"/c ";
 	wstr += path;
-	wstr += L"\\resource\\curl.exe - L - H \"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36\" \"";
+	wstr += L"\\resource\\curl.exe -L -H \"User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36\" \"";
 	wstr += url;
 	wstr += L"\" -o \"%TEMP%\\knu_kiosk.temp\"";
-
-	wcout << wstr;
 	
 	SHELLEXECUTEINFO sei;
 	::ZeroMemory(&sei, sizeof(SHELLEXECUTEINFO));

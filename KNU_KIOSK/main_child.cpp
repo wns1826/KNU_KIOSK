@@ -3,7 +3,6 @@
 
 LRESULT CALLBACK proc_main_clock(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam) { //100
 	static int td = 0;
-	const wchar_t d_text[] = L"일월화수목금토";
 	switch (iMessage) {
 	case WM_CREATE: {
 		SetTimer(hWnd, 1, 1000, NULL);
@@ -19,7 +18,7 @@ LRESULT CALLBACK proc_main_clock(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM
 		if (td < 5)
 			wsprintf(w_str, L"%.2d:%.2d:%.2d", now->tm_hour, now->tm_min, now->tm_sec);
 		else if (td < 7) {
-			wsprintf(w_str, L"%.2d/%.2d(%c)", now->tm_mon + 1, now->tm_mday, d_text[now->tm_wday]);
+			wsprintf(w_str, L"%.2d/%.2d(%c)", now->tm_mon + 1, now->tm_mday, day_text[now->tm_wday]);
 			if (td == 6)
 				td = 0;
 		}
@@ -65,9 +64,9 @@ LRESULT CALLBACK proc_main_menu(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM 
 	case WM_LBUTTONUP: {
 		select = LOWORD(lParam) / 270;
 		PostMessage(h_main, WM_PAGE, (WPARAM)select, NULL);
-		PostMessage(hWnd, WM_DRAW, NULL, NULL);
+		PostMessage(hWnd, WM_REDRAW, NULL, NULL);
 		break; }
-	case WM_DRAW:
+	case WM_REDRAW:
 		InvalidateRect(hWnd, NULL, FALSE);
 		break;
 	}
@@ -75,13 +74,54 @@ LRESULT CALLBACK proc_main_menu(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM 
 }
 
 LRESULT CALLBACK proc_main_popup(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam) { //279
+	static int ani_time;
+	static int popup_num = 0;
+	static int popup_pos = 0;
 	switch (iMessage) {
 	case WM_CREATE: {
+		ani_time = clock();
+		SetTimer(hWnd, 1, 500, NULL);
 		break; }
 	case WM_PAINT: {
 		DRAW Draw(hWnd);
-		Draw.Draw(0, 0, 1080, 279, L"resource\\image\\list\\1.jpg");
+		if (popup_pos == 0 && popup_num < knu_popup.size())
+			Draw.Draw(0, 0, 1080, 279, knu_popup[popup_num].c_str());
+		else if (popup_num < knu_popup.size()) {
+			Draw.Draw(0, 0, 1080, 279, knu_popup[popup_num].c_str());
+			if (popup_num == 0)
+				Draw.Draw(popup_pos, 0, 1080, 279, knu_popup[knu_popup.size() - 1].c_str());
+			else
+				Draw.Draw(popup_pos, 0, 1080, 279, knu_popup[popup_num - 1].c_str());
+		}
 		break; }
+	case WM_TIMER: {
+		switch (wParam) {
+		case 1: //대기
+			if (5000 <= clock() - ani_time) {
+				KillTimer(hWnd, 1);
+				popup_pos = 1;
+				popup_num++;
+				if (knu_popup.size() <= popup_num)
+					popup_num = 0;
+				ani_time = clock();
+				SetTimer(hWnd, 2, 30, NULL);
+			}
+			break;
+		case 2: //이동
+			popup_pos = 1080 * (clock() - ani_time) / 2000.0; 
+			if (1080 <= popup_pos) {
+				popup_pos = 0;
+				KillTimer(hWnd, 2);
+				ani_time = clock();
+				SetTimer(hWnd, 1, 500, NULL);
+			}
+			InvalidateRect(hWnd, NULL, FALSE);
+			break;
+		}
+	}
+	case WM_REDRAW:
+		InvalidateRect(hWnd, NULL, FALSE);
+		break;
 	}
 	return(DefWindowProc(hWnd, iMessage, wParam, lParam));
 }

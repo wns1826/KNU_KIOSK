@@ -2,7 +2,7 @@
 #include "header.h"
 
 LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam) {
-	static WEBVIEW WebView;
+	static WEBVIEW* WebView;
 	static int a = 255;
 	static int a_time = 0;
 	static int cnt_txt = 0;
@@ -13,14 +13,22 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 	static wstring status_text = L"준비 중";
 	switch (iMessage) {
 	case WM_CREATE: {
+		a = 255;
+		a_time = 0;
+		cnt_txt = 0;
+		ani = true;
+		end = false;
+		init_end = false;
+		status_text = L"준비 중";
 
-		WebView.Size(250, 250);
-		WebView.AddressBar(false);
-		WebView.MenuBar(false);
-		WebView.ToolBar(false);
-		WebView.Navigate(L"kiosk.youn.in/progress.html");
-		WebView.SParent(hWnd);
-		WebView.SPos(415, 1450);
+		WebView = new WEBVIEW();
+		WebView->Size(250, 250);
+		WebView->AddressBar(false);
+		WebView->MenuBar(false);
+		WebView->ToolBar(false);
+		WebView->Navigate(L"kiosk.youn.in/progress.html");
+		WebView->SParent(hWnd);
+		WebView->SPos(415, 1450);
 
 		SetWindowLong(hWnd, GWL_EXSTYLE, GetWindowLong(hWnd, GWL_EXSTYLE) | WS_EX_LAYERED);
 		SetLayeredWindowAttributes(hWnd, NULL, 0, LWA_ALPHA);
@@ -29,6 +37,11 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		SetTimer(hWnd, 1, 10, NULL);
 
 		t1 = t2 = t3 = t4 = init_title_empty;
+
+		time_t t = std::time(0);
+		update_last = std::localtime(&t);
+		update_h = update_last->tm_hour;
+		update_m = update_last->tm_min;
 
 		//PostMessage(hWnd, WM_PROCESSING, 1, NULL);
 
@@ -44,7 +57,7 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		Draw.Text(83, 289, 862, 150, 117, 0, 0, 0, L"Noto Sans CJK KR Thin", t2);
 		Draw.Text(83, 416, 862, 150, 117, 0, 0, 0, L"Noto Sans CJK KR Thin", t3);
 		Draw.Text(83, 543, 862, 150, 117, 0, 0, 0, L"Noto Sans CJK KR Thin", t4);
-		Draw.Text(110, 705, 862, 140, 50, 244, 118, 9, L"Noto Sans CJK KR Regular", status_text.c_str(), 1);
+		//Draw.Text(110, 705, 862, 140, 50, 244, 118, 9, L"Noto Sans CJK KR Regular", status_text.c_str(), 1);
 		Draw.Text(110, 1705, 862, 140, 50, 244, 118, 9, L"Noto Sans CJK KR Regular", status_text.c_str(), 1);
 		break; }
 	case WM_TIMER: {
@@ -148,6 +161,7 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 		InvalidateRect(hWnd, NULL, FALSE);
 		break; }
 	case WM_DESTROY: {
+		init_end = true;
 		if (!end) {
 
 			KillTimer(hWnd, 1);
@@ -164,11 +178,12 @@ LRESULT CALLBACK proc_init(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 			end = true;
 			return 0;
 		}
-		WebView.~WEBVIEW();
+		delete WebView;
 		break; }
 	case WM_CLOSE:
 	case WM_QUIT:
 	case WM_QUERYENDSESSION:
+		init_end = true;
 		DestroyWindow(hwnd);
 		break;
 	}

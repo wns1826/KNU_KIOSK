@@ -55,7 +55,10 @@ int add_title_cie(GumboNode* tbody) {
 								GumboAttribute* a_href = gumbo_get_attribute(&a->v.element.attributes, "href");
 								if (a_href != NULL) {
 									const char* str = a_href->value;
-									temp.url = Hangul.get(EncodeCharToWchar(str));
+									temp.url = L"http://cie.kunsan.ac.kr/view/notices_data";
+									temp.url += Hangul.get(EncodeCharToWchar(str + 22));
+									for (int i = 0; i < 6; i++)
+										temp.url[temp.url.size() - i - 1] = 0;
 								}
 							}
 						}

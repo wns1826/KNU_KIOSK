@@ -2,8 +2,17 @@
 #include "header.h"
 
 LRESULT CALLBACK proc_main_bus(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam) {
+	static WEBVIEW* WebView;
 	switch (iMessage) {
 	case WM_CREATE: {
+		WebView = new WEBVIEW();
+		WebView->Size(1040, 1300);
+		WebView->AddressBar(false);
+		WebView->MenuBar(false);
+		WebView->ToolBar(false);
+		WebView->Navigate(L"http://www.kunsan.ac.kr/synap/skin/doc.html?fn=153621609594922.hwp&rs=/upload_data/Synap/CNT_ATCHDOWN/&cpath=");
+		WebView->SParent(hWnd);
+		WebView->SPos(30, 112);
 		break; }
 	case WM_PAINT: {
 		DRAW Draw(hWnd);

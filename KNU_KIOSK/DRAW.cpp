@@ -35,7 +35,7 @@ void DRAW::Draw(int x, int y, int size_x, int size_y, const wchar_t* file) {
 	G.DrawImage(&I, x, y, size_x, size_y);
 }
 
-int DRAW::Text_Rect(int font_size, const wchar_t* font, const wchar_t* Str_t) {
+int DRAW::Text_Rect_x(int font_size, const wchar_t* font, const wchar_t* Str_t) {
 	Graphics G(MemDC);
 	CharacterRange cr(0, wcslen(Str_t));
 	StringFormat sf;
@@ -50,6 +50,23 @@ int DRAW::Text_Rect(int font_size, const wchar_t* font, const wchar_t* Str_t) {
 	rgn.GetBounds(&rt, &G);
 
 	return rt.Width;
+}
+
+int DRAW::Text_Rect_y(int font_size, const wchar_t* font, const wchar_t* Str_t) {
+	Graphics G(MemDC);
+	CharacterRange cr(0, wcslen(Str_t));
+	StringFormat sf;
+	sf.SetMeasurableCharacterRanges(1, &cr);
+	Font F(font, font_size, FontStyleRegular, UnitPixel);
+	RectF O;
+	Region rgn;
+
+	G.MeasureCharacterRanges(Str_t, wcslen(Str_t), &F, RectF(0, 0, 1080, 1920), &sf, 1, &rgn);
+	RectF rt;
+
+	rgn.GetBounds(&rt, &G);
+
+	return rt.Height;
 }
 
 void DRAW::Text(int x, int y, int size_x, int size_y, int font_size, int r, int g, int b, const wchar_t* font, const wchar_t* Str, int Alignment) {
